@@ -19,17 +19,44 @@ A bar chart using Mike Bostock's pattern of reusable charts.-->
 </head>
 <body>
 <h2>Reusable Chart</h2>
+<form>
+  <input type="radio" name="gender" value="male" checked> Male<br>
+  <input type="radio" name="gender" value="female"> Female<br>
+</form>
 <div id="valuesHistory"></div>
 <script>
-    
+    d3.csv("data.csv", function(error, data) {
+        if (error) throw error;
+        
+        var prep = data.map(function(d) { 
+            return d.Aboard;
+        });
+        console.log(prep);
+
+        var chart = barChart().barPadding(0);
+
+        var chartWrapper = d3.select('#valuesHistory')
+                            .datum(prep)
+                            .call(chart);
+        
+
+        // var charts = d3.select("#valueHistory")
+        //                 .data([data]);
+
+        // charts.enter().append("div")
+        //                 .attr('class', 'chart')
+        //                 .merge(charts)
+        //                 .call(rtt);
+        // charts.exit().remove();
+    });
     //specify your variables here 
-    var values = [5, 5, 4, 1, 2, 6, 5];
+    // var values = [5, 5, 4, 1, 2, 6, 5];
 
-    var valuesChart = barChart().barPadding(2);
+    // var valuesChart = barChart().barPadding(2);
 
-    var chartWrapper = d3.select('#valuesHistory')
-                        .datum(values)
-                        .call(valuesChart);
+    // var chartWrapper = d3.select('#valuesHistory')
+    //                     .datum(values)
+    //                     .call(valuesChart);
 
 
 </script>
