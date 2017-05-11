@@ -1,12 +1,11 @@
 
-
 // Using Mike Bostock's Towards Reusable Charts Pattern
 function barChart() {
 
     // All options that should be accessible to caller
     var width = 900;
     var height = 200;
-    var barPadding = 1;
+    var barPadding = 2;
     var fillColor = 'coral';
 
     function chart(selection){
@@ -27,22 +26,13 @@ function barChart() {
                 .attr('height', barHeight)
                 .attr('x', 0)
                 .attr('width', function (d) { return d*widthScale})
-                .style('fill', fillColor);
+                .style('fill', fillColor)
+                .append('text', data)
+                .style('fill', 'black')
+                .attr('class', 'value')
+                .attr("text-anchor", "end")
+                .attr('x', widthScale);
         });
-
-        svg.selectAll("text")
-            .data(dataset)
-            .enter()
-            .append("text")
-                .attr('color', 'black')
-                .text(function(d) {
-                    return d;
-            })   .attr("x", function(d, i) {
-                    return i * (h / dataset.length);
-            })
-            .attr("y", function(d) {
-                    return w - (d * 4);
-            });
     }
 
     chart.width = function(value) {

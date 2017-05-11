@@ -21,14 +21,15 @@ A bar chart using Mike Bostock's pattern of reusable charts.-->
 <h2>Reusable Chart</h2>
 <div id="valuesHistory"></div>
 <script>
-
+    
+    //specify your variables here 
     var values = [5, 5, 4, 1, 2, 6, 5];
 
     var valuesChart = barChart().barPadding(2);
 
-    d3.select('#valuesHistory')
-            .datum(values)
-            .call(valuesChart);
+    var chartWrapper = d3.select('#valuesHistory')
+                        .datum(values)
+                        .call(valuesChart);
 
 
 </script>
